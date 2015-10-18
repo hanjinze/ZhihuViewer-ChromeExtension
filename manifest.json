@@ -1,0 +1,40 @@
+{
+  "manifest_version": 2,
+
+  "name": "图知乎",
+  "description": "CTRL + ALT + F，看尽知乎美图",
+  "version": "1.0",
+
+  "icons": { 
+           "16": "icon.png",
+           "48": "icon.png",
+          "128": "icon.png"
+          },
+
+  "content_scripts": [
+    {
+      "matches": ["http://www.zhihu.com/question/*", "http://zhuanlan.zhihu.com/*"],
+      "js": ["jquery-2.1.4.min.js", "viewer.js"],
+      "css": ["viewer.css"]
+    }
+  ],
+
+  "page_action": {
+    "default_title": "图知乎—阅读使用说明",
+    "default_icon": "icon.png",
+    "default_popup": "readme.html"
+  },
+
+  "background": {
+    "scripts": ["bg.js"],
+    "persistent": true
+  },
+
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "http://www.zhihu.com/question/*"
+  ]
+
+
+}
