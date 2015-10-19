@@ -10,8 +10,11 @@ $(document).ready(function() {
 	var log = console.log.bind(console);
 	var prevButton = {};
 	var nextButton = {};
+	var total = {};
+	var current = {};
 	var viewer = {};
 	var imageHolder = {};
+	var isPresented = false;
 
 	if(location.href.indexOf('zhuanlan') !== -1) {
 		allImages = $('.origin_image');
@@ -28,9 +31,10 @@ $(document).ready(function() {
 			'<div class="window" data-index="0"></div>' +
 			'<div class="close-window"></div>' +
 			'<div class="paginator">' +
-			'<div class="paginator-right paginator-each"></div>' +
-			'<div class="paginator-left paginator-each"></div>' +
+				'<div class="paginator-right paginator-each"></div>' +
+				'<div class="paginator-left paginator-each"></div>' +
 			'</div>' +
+			'<div class="nav"><span class="current"></span><span class="slash">/</span><span class="total"></span></div>' + 
 	  '</div>' +
 	  '<div class="mask"></div>').appendTo($('body'));
 
@@ -44,6 +48,10 @@ $(document).ready(function() {
 	$(allImagesHtml.join('')).appendTo(imageHolder);
 
 	maxImages = allImagesUrl.length;
+	total = $('.total');
+	current = $('.current');
+	total.text(maxImages);
+	current.text('1');
 	prevButton = $('.paginator-left');
 	nextButton = $('.paginator-right');
 	if(maxImages === 0) {
@@ -56,9 +64,11 @@ $(document).ready(function() {
 
 	function prevPic(){
 		var currentPosition = parseInt(imageHolder.data('index'));
+		var currentPic = parseInt(current.text());
 		if(currentPosition !== 0) {
 			imageHolder.css('right', (currentPosition - 1) * 100 + '%');
 			imageHolder.data('index', currentPosition - 1);
+			current.text(currentPic - 1);
 		}   		 
 		if(currentPosition === 1) {
 			prevButton.fadeOut(400);
@@ -68,10 +78,12 @@ $(document).ready(function() {
 
 	function nextPic() {
 		var currentPosition = parseInt(imageHolder.data('index'));
+		var currentPic = parseInt(current.text());
 		prevButton.fadeIn(400);
 		if(currentPosition < maxImages - 1) {
 			imageHolder.css('right', (currentPosition + 1) * 100 + '%');
 			imageHolder.data('index', currentPosition + 1);
+			current.text(currentPic + 1);
 		}
 		if(currentPosition === maxImages -2) {
 			nextButton.fadeOut(400);
@@ -97,6 +109,7 @@ $(document).ready(function() {
 	}
 	
 	function start(){
+		isPresented = true;
 		viewer.fadeIn(400);
 		$('.mask').fadeIn(400);
 		$('body').css('overflow', 'hidden');
@@ -109,6 +122,7 @@ $(document).ready(function() {
 	}
 
 	function stop(){
+		isPresented = false;
 		viewer.fadeOut(400);
 		$('.mask').hide();
 		$('body').css('overflow', 'visible');
@@ -126,7 +140,11 @@ $(document).ready(function() {
 	
 	$(document).keydown(function(e){
 		if(e.altKey && e.ctrlKey && e.which === 70) {
-			start();
+			if(isPresented) {
+				stop();
+			} else {
+				start();
+			}
 		}
 	});
 	

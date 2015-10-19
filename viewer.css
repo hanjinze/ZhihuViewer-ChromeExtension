@@ -110,3 +110,18 @@
   position: relative;
   top: 200px;
 }
+
+.nav {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    right: 0;
+    bottom: 12px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.slash {
+  padding: 0 6px;
+}
