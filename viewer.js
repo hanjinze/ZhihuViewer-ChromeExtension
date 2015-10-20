@@ -18,7 +18,16 @@ $(document).ready(function() {
 
 	if(location.href.indexOf('zhuanlan') !== -1) {
 		allImages = $('.origin_image');
+	} else if(location.href.indexOf('collection') !== -1) {
+		$('<div class="hidden" id="hidden"></div>').appendTo($('body'));
+		$('.content.hidden').each(function(){
+			/* As of 1.9, a string is only considered to be HTML if it starts with a less-than ("<") character. */
+			var text = '<div>' + $(this).text() + '</div>';
+			$(text).appendTo($('#hidden'));
+		})
+		allImages = $('#hidden').find('.origin_image');
 	}
+
 	allImages.each(function(index, image) {
 		if($(this).data('original') !== undefined) {
 			allImagesUrl.push($(this).data('original'));

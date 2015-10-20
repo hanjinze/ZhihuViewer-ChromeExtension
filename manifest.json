@@ -13,7 +13,7 @@
 
   "content_scripts": [
     {
-      "matches": ["http://www.zhihu.com/question/*", "http://zhuanlan.zhihu.com/*"],
+      "matches": ["http://www.zhihu.com/question/*", "http://zhuanlan.zhihu.com/*", "http://www.zhihu.com/collection/*"],
       "js": ["jquery-2.1.4.min.js", "viewer.js"],
       "css": ["viewer.css"]
     }
