@@ -3,7 +3,7 @@
 
   "name": "图知乎",
   "description": "CTRL + ALT + F，看尽知乎美图",
-  "version": "1.0.1",
+  "version": "1.0.2",
 
   "icons": { 
            "16": "icon.png",
