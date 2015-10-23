@@ -3,7 +3,7 @@
 
   "name": "图知乎",
   "description": "CTRL + ALT + F，看尽知乎美图",
-  "version": "1.0.2",
+  "version": "1.0.3",
 
   "icons": { 
            "16": "icon.png",
@@ -33,8 +33,9 @@
   "permissions": [
     "tabs",
     "activeTab",
-    "http://www.zhihu.com/question/*"
+    "http://www.zhihu.com/question/*",
+    "http://zhuanlan.zhihu.com/*",
+    "http://www.zhihu.com/collection/*"
   ]
-
 
 }
